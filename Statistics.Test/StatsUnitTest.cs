@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using Statistics;
+using System.Collections.Generic;
 
 namespace Statistics.Test
 {
@@ -10,18 +11,21 @@ namespace Statistics.Test
         public void ReportsAverageMinMax()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(
-                new List<___>{1.5, 8.9, 3.2, 4.5});
+            (var average, var min, var max) = statsComputer.CalculateStatistics(new List<float>() { 1.5f, 8.9f, 3.2f, 4.5f });
             float epsilon = 0.001F;
-            Assert.True(Math.Abs(statsComputer.average - 4.525) <= epsilon);
-            Assert.True(Math.Abs(statsComputer.max - 8.9) <= epsilon);
-            Assert.True(Math.Abs(statsComputer.min - 1.5) <= epsilon);
+            Assert.True(Math.Abs(average - 4.525) <= epsilon);
+            Assert.True(Math.Abs(max - 8.9) <= epsilon);
+            Assert.True(Math.Abs(min - 1.5) <= epsilon);
         }
+        [Fact]
         public void ReportsNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(
-                new List<___>{});
+            (var average, var min, var max) = statsComputer.CalculateStatistics(
+                new List<float>{});
+            Assert.True(average == Double.NaN);
+            Assert.True(min == Double.NaN);
+            Assert.True(max == Double.NaN);
             //All fields of computedStats (average, max, min) must be
             //Double.NaN (not-a-number), as described in
             //https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
