@@ -6,13 +6,18 @@ namespace Statistics
 {
     public class StatsComputer
     {
-        public (double, float, float) CalculateStatistics(List<float> numbers) {
+        public Stats CalculateStatistics(List<float> numbers) {
             //Implement statistics here
+            Stats statistics = new Stats(Double.NaN, Double.NaN, Double.NaN);
+            if (numbers.Count == 0)
+            {
+                return statistics;
+            }
             double average = numbers.Average();
-            float min = Enumerable.Min(numbers);
-            float max = Enumerable.Max(numbers);
+            double min = Enumerable.Min(numbers);
+            double max = Enumerable.Max(numbers);
 
-            return (average, min, max);
+            return statistics;
         }
     }
 }
