@@ -10,8 +10,8 @@ namespace Statistics
             //Implement statistics here
             if (numbers.Count == 0)
             {
-                Stats statistics = new Stats(Double.NaN, Double.NaN, Double.NaN);
-                return statistics;
+                Stats stats = new Stats(Double.NaN, Double.NaN, Double.NaN);
+                return stats;
             }
             double average = numbers.Average();
             double min = Enumerable.Min(numbers);
