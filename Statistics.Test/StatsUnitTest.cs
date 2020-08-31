@@ -21,10 +21,11 @@ namespace Statistics.Test
         public void ReportsNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(new List<float> { });
-            Assert.True(Double.IsNaN(computedStats.average));
-            Assert.True(Double.IsNaN(computedStats.min));
-            Assert.True(Double.IsNaN(computedStats.max));
+            (var average, var min, var max) = statsComputer.CalculateStatistics(
+                new List<float>{});
+            Assert.True(Double.IsNaN(average));
+            Assert.True(Double.IsNaN(average));
+            Assert.True(Double.IsNaN(average));
             //All fields of computedStats (average, max, min) must be
             //Double.NaN (not-a-number), as described in
             //https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
