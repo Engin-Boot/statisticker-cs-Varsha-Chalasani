@@ -6,9 +6,9 @@ namespace Statistics
 {
     public struct Stats
     {
-        double average;
-        double min;
-        double max;
+        public double average;
+        public double min;
+        public double max;
     };
 
     public class StatsComputer
@@ -25,8 +25,8 @@ namespace Statistics
                 return computedStats;
             }
             computedStats.average = numbers.Average();
-            computedStats.min = numbers.Min(numbers);
-            computedStats.max = numbers.Max(numbers);
+            computedStats.min = numbers.Min();
+            computedStats.max = numbers.Max();
 
             return computedStats;
         }
