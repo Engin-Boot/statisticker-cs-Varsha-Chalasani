@@ -4,23 +4,31 @@ using System.Linq;
 
 namespace Statistics
 {
-    public class StatsComputer
+    public struct Stats
     {
-        public (double, double, double) CalculateStatistics(List<float> numbers) {
+        double average;
+        double min;
+        double max;
+    };
+
+    public class StatsComputer
+    { 
+        public Stats CalculateStatistics(List<float> numbers)
+        {
             //Implement statistics here
-            double average, min, max;
+            Stats computedStats;
             if (numbers.Count == 0)
             {
-                average = Double.NaN;
-                min = Double.NaN;
-                max = Double.NaN;
-                return (average, min, max);
+                computedStats.average = Double.NaN;
+                computedStats.min = Double.NaN;
+                computedStats.max = Double.NaN;
+                return computedStats;
             }
-            average = numbers.Average();
-            min = Enumerable.Min(numbers);
-            max = Enumerable.Max(numbers);
+            computedStats.average = numbers.Average();
+            computedStats.min = numbers.Min(numbers);
+            computedStats.max = numbers.Max(numbers);
 
-            return (average, min, max);
+            return computedStats;
         }
     }
 }
