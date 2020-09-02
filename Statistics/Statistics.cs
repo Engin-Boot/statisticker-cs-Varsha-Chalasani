@@ -6,22 +6,22 @@ namespace Statistics
 {
     public class StatsComputer
     { 
-        public (double, double, double) CalculateStatistics(List<float> numbers)
+        public Stats CalculateStatistics(List<float> numbers)
         {
             //Implement statistics here
-            double average, min, max;
+            Stats computedStats = new Stats();
             if (numbers.Count == 0)
             {
-                average = Double.NaN;
-                min = Double.NaN;
-                max = Double.NaN;
-                return (average, min, max);
+                computedStats.Average = Double.NaN;
+                computedStats.Min = Double.NaN;
+                computedStats.Max = Double.NaN;
+                return computedStats;
             }
-            average = numbers.Average();
-            min = numbers.Min();
-            max = numbers.Max();
+            computedStats.Average = numbers.Average();
+            computedStats.Min = numbers.Min();
+            computedStats.Max = numbers.Max();
 
-            return (average, min, max);
+            return computedStats;
         }
     }
 }

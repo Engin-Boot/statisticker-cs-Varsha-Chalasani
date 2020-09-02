@@ -11,20 +11,20 @@ namespace Statistics.Test
         public void ReportsAverageMinMax()
         {
             var statsComputer = new StatsComputer();
-            (var average, var min, var max) = statsComputer.CalculateStatistics(new List<float>() { 1.5f, 8.9f, 3.2f, 4.5f });
+            var computedStats = statsComputer.CalculateStatistics(new List<float>() { 1.5f, 8.9f, 3.2f, 4.5f });
             float epsilon = 0.001F;
-            Assert.True(Math.Abs(average - 4.525) <= epsilon);
-            Assert.True(Math.Abs(max - 8.9) <= epsilon);
-            Assert.True(Math.Abs(min - 1.5) <= epsilon);
+            Assert.True(Math.Abs(computedStats.Average - 4.525) <= epsilon);
+            Assert.True(Math.Abs(computedStats.Max - 8.9) <= epsilon);
+            Assert.True(Math.Abs(computedStats.Min - 1.5) <= epsilon);
         }
         [Fact]
         public void ReportsNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
-            (var average, var min, var max) = statsComputer.CalculateStatistics(new List<float>{});
-            Assert.True(Double.IsNaN(average));
-            Assert.True(Double.IsNaN(min));
-            Assert.True(Double.IsNaN(max));
+            var computedStats = statsComputer.CalculateStatistics(new List<float>{});
+            Assert.True(Double.IsNaN(computedStats.Average));
+            Assert.True(Double.IsNaN(computedStats.Min));
+            Assert.True(Double.IsNaN(computedStats.Max));
             //All fields of computedStats (average, max, min) must be
             //Double.NaN (not-a-number), as described in
             //https://docs.microsoft.com/en-us/dotnet/api/system.double.nan?view=netcore-3.1
