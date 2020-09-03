@@ -11,7 +11,7 @@ namespace Statistics.Test
         public void ReportsComputedStatsForAListOfNumbers()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(new List<float>() { 1.5f, 8.9f, 3.2f, 4.5f });
+            var computedStats = statsComputer.CalculateStatistics(new List<double>() { 1.5f, 8.9f, 3.2f, 4.5f });
             float epsilon = 0.001F;
             Assert.True(Math.Abs(computedStats.Average - 4.525) <= epsilon);
             Assert.True(Math.Abs(computedStats.Max - 8.9) <= epsilon);
@@ -21,7 +21,7 @@ namespace Statistics.Test
         public void ReportsAllNaNForEmptyInput()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(new List<float>{});
+            var computedStats = statsComputer.CalculateStatistics(new List<double>{});
             Assert.True(Double.IsNaN(computedStats.Average));
             Assert.True(Double.IsNaN(computedStats.Min));
             Assert.True(Double.IsNaN(computedStats.Max));
@@ -34,7 +34,7 @@ namespace Statistics.Test
         public void ReportsComputedStatsForListOfNumbersHavingFewNaNValues()
         {
             var statsComputer = new StatsComputer();
-            var computedStats = statsComputer.CalculateStatistics(new List<float> {3.7f, float.NaN, 7.0f, 10.6f, 4.5f });
+            var computedStats = statsComputer.CalculateStatistics(new List<double> {3.7f, double.NaN, 7.0f,double.NaN, 10.6f, 4.5f });
             float epsilon = 0.001F;
             Assert.True(Math.Abs(computedStats.Average - 6.45) <= epsilon);
             Assert.True(Math.Abs(computedStats.Max - 10.6) <= epsilon);

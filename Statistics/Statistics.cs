@@ -6,9 +6,10 @@ namespace Statistics
 {
     public class StatsComputer
     { 
-        public Stats CalculateStatistics(List<float> numbers)
+        public Stats CalculateStatistics(List<double> numbers)
         {
             //Implement statistics here
+            IgnoreNaNValues(numbers);
             Stats computedStats = new Stats();
             if (numbers.Count == 0)
             {
@@ -22,6 +23,13 @@ namespace Statistics
             computedStats.Max = numbers.Max();
 
             return computedStats;
+        }
+
+        public static List<double> IgnoreNaNValues(List<double> numbers)
+        {
+            numbers.RemoveAll(item => Double.IsNaN(item));
+
+            return numbers;
         }
     }
 }
