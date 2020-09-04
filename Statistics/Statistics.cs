@@ -13,9 +13,6 @@ namespace Statistics
             Stats computedStats = new Stats();
             if (numbers.Count == 0)
             {
-                computedStats.Average = Double.NaN;
-                computedStats.Min = Double.NaN;
-                computedStats.Max = Double.NaN;
                 return computedStats;
             }
             computedStats.Average = numbers.Average();
@@ -25,9 +22,9 @@ namespace Statistics
             return computedStats;
         }
 
-        public static List<double> IgnoreNaNValues(List<double> numbers)
+        public List<double> IgnoreNaNValues(List<double> numbers)
         {
-            numbers.RemoveAll(item => Double.IsNaN(item));
+            numbers.RemoveAll(double.IsNaN);
 
             return numbers;
         }
