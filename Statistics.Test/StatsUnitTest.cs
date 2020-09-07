@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using Statistics;
 using System.Collections.Generic;
+using static Statistics.Stats;
 
 namespace Statistics.Test
 {
@@ -55,12 +56,11 @@ namespace Statistics.Test
 
         [Fact]
 
-        public void RemovesNaNValuesIfListHasNaN()
+        public void IgnoresNaNValuesIfListHasNaN()
         {
             var statsComputer = new StatsComputer();
-            List<double> list = new List<double> { 3.7, double.NaN, 7.0, double.NaN, 10.6, 4.5 };
-            List<double> returnedList = statsComputer.IgnoreNaNValues(list);
-            Assert.False(returnedList.Exists(double.IsNaN));
+            var returnedList = statsComputer.CalculateStatistics(new List<double> { 3.7, double.NaN, 7.0, double.NaN, 10.6, 4.5 });
+            Assert.True(statsComputer.numbers.Count == 6);
         }
     }
 }
